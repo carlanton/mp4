@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MP4Box dump trace-->
+<IsoMediaFile Name="v1-init.mp4">
+    <FileTypeBox MajorBrand="dash" MinorVersion="1">
+        <BoxInfo Size="36" Type="ftyp"/>
+        <BrandEntry AlternateBrand="iso8"/>
+        <BrandEntry AlternateBrand="mp41"/>
+        <BrandEntry AlternateBrand="dash"/>
+        <BrandEntry AlternateBrand="avc1"/>
+        <BrandEntry AlternateBrand="cmfc"/>
+    </FileTypeBox>
+    <MovieBox>
+        <BoxInfo Size="778" Type="moov"/>
+        <MetaBox>
+            <BoxInfo Size="134" Type="meta"/>
+            <FullBoxInfo Version="0" Flags="0x0"/>
+            <HandlerBox Type="ID32" Name="(null)" reserved1="0" reserved2="data:application/octet-string,000000000000000000000000">
+                <BoxInfo Size="32" Type="hdlr"/>
+                <FullBoxInfo Version="0" Flags="0x0"/>
+            </HandlerBox>
+            <UnknownBox>
+                <BoxInfo Size="90" Type="ID32"/>
+            </UnknownBox>
+        </MetaBox>
+        <MovieHeaderBox CreationTime="3588934804" ModificationTime="3588934804" TimeScale="90000" Duration="0" NextTrackID="2">
+            <BoxInfo Size="108" Type="mvhd"/>
+            <FullBoxInfo Version="0" Flags="0x0"/>
+        </MovieHeaderBox>
+        <MovieExtendsBox>
+            <BoxInfo Size="40" Type="mvex"/>
+            <TrackExtendsBox TrackID="1" SampleDescriptionIndex="1" SampleDuration="0" SampleSize="0">
+                <DefaultSampleFlags IsLeading="0" SampleDependsOn="0" SampleIsDependedOn="0" SampleHasRedundancy="0" SamplePadding="0" SampleSync="1" SampleDegradationPriority="0"/>
+                <BoxInfo Size="32" Type="trex"/>
+                <FullBoxInfo Version="0" Flags="0x0"/>
+            </TrackExtendsBox>
+        </MovieExtendsBox>
+        <TrackBox>
+            <BoxInfo Size="488" Type="trak"/>
+            <TrackHeaderBox CreationTime="3588934804" ModificationTime="3588934804" TrackID="1" Duration="0" Width="512.00" Height="288.00">
+                <Matrix m11="0x00010000" m12="0x00000000" m13="0x00000000" 								m21="0x00000000" m22="0x00010000" m23="0x00000000" 								m31="0x00000000" m32="0x00000000" m33="0x40000000"/>
+                <BoxInfo Size="92" Type="tkhd"/>
+                <FullBoxInfo Version="0" Flags="0x7"/>
+            </TrackHeaderBox>
+            <MediaBox>
+                <BoxInfo Size="388" Type="mdia"/>
+                <MediaHeaderBox CreationTime="3588934804" ModificationTime="3588934804" TimeScale="90000" Duration="0" LanguageCode="und">
+                    <BoxInfo Size="32" Type="mdhd"/>
+                    <FullBoxInfo Version="0" Flags="0x0"/>
+                </MediaHeaderBox>
+                <HandlerBox Type="vide" Name="VideoHandler" reserved1="0" reserved2="data:application/octet-string,000000000000000000000000">
+                    <BoxInfo Size="45" Type="hdlr"/>
+                    <FullBoxInfo Version="0" Flags="0x0"/>
+                </HandlerBox>
+                <MediaInformationBox>
+                    <BoxInfo Size="303" Type="minf"/>
+                    <VideoMediaHeaderBox>
+                        <BoxInfo Size="20" Type="vmhd"/>
+                        <FullBoxInfo Version="0" Flags="0x1"/>
+                    </VideoMediaHeaderBox>
+                    <DataInformationBox>
+                        <BoxInfo Size="36" Type="dinf"/>
+                        <DataReferenceBox>
+                            <BoxInfo Size="28" Type="dref"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                            <URLDataEntryBox>
+                                <BoxInfo Size="12" Type="url "/>
+                                <FullBoxInfo Version="0" Flags="0x1"/>
+                            </URLDataEntryBox>
+                        </DataReferenceBox>
+                    </DataInformationBox>
+                    <SampleTableBox>
+                        <BoxInfo Size="239" Type="stbl"/>
+                        <SampleDescriptionBox>
+                            <BoxInfo Size="163" Type="stsd"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                            <AVCSampleEntryBox DataReferenceIndex="1" Width="512" Height="288" XDPI="4718592" YDPI="4718592" BitDepth="24" CompressorName="AVC Coding">
+                                <BoxInfo Size="147" Type="avc1"/>
+                                <AVCConfigurationBox>
+                                    <AVCDecoderConfigurationRecord configurationVersion="1" AVCProfileIndication="66" profile_compatibility="192" AVCLevelIndication="22" nal_unit_size="4">
+                                        <SequenceParameterSet size="38" content="data:application/octet-string,6742C016919408025B014A020202800000030080000019700001EC20005C49CD4601F162E580"/>
+                                        <PictureParameterSet size="4" content="data:application/octet-string,68C923C8"/>
+                                    </AVCDecoderConfigurationRecord>
+                                    <BoxInfo Size="61" Type="avcC"/>
+                                </AVCConfigurationBox>
+                            </AVCSampleEntryBox>
+                        </SampleDescriptionBox>
+                        <TimeToSampleBox EntryCount="0">
+                            <BoxInfo Size="16" Type="stts"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                        </TimeToSampleBox>
+                        <SampleToChunkBox EntryCount="0">
+                            <BoxInfo Size="16" Type="stsc"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                        </SampleToChunkBox>
+                        <SampleSizeBox SampleCount="0">
+                            <BoxInfo Size="20" Type="stsz"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                        </SampleSizeBox>
+                        <ChunkOffsetBox EntryCount="0">
+                            <BoxInfo Size="16" Type="stco"/>
+                            <FullBoxInfo Version="0" Flags="0x0"/>
+                        </ChunkOffsetBox>
+                    </SampleTableBox>
+                </MediaInformationBox>
+            </MediaBox>
+        </TrackBox>
+    </MovieBox>
+</IsoMediaFile>

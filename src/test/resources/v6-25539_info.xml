@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MP4Box dump trace-->
+<IsoMediaFile Name="v6-25539.mp4">
+<SegmentTypeBox MajorBrand="msdh" MinorVersion="0">
+<BoxInfo Size="24" Type="styp"/>
+<BrandEntry AlternateBrand="msdh"/>
+<BrandEntry AlternateBrand="msix"/>
+</SegmentTypeBox>
+<SegmentIndexBox reference_ID="1" timescale="90000" earliest_presentation_time="7354944000" first_offset="0">
+<BoxInfo Size="52" Type="sidx"/>
+<FullBoxInfo Version="1" Flags="0x0"/>
+<Reference type="0" size="1081920" duration="288000" startsWithSAP="1" SAP_type="1" SAPDeltaTime="0"/>
+</SegmentIndexBox>
+<MovieFragmentBox TrackFragments="1">
+<BoxInfo Size="736" Type="moof"/>
+<MovieFragmentHeaderBox FragmentSequenceNumber="25539">
+<BoxInfo Size="16" Type="mfhd"/>
+<FullBoxInfo Version="0" Flags="0x0"/>
+</MovieFragmentHeaderBox>
+<TrackFragmentBox>
+<BoxInfo Size="712" Type="traf"/>
+<TrackFragmentHeaderBox TrackID="1" BaseDataOffset="moof" SampleDescriptionIndex="1" SampleDuration="3600">
+<BoxInfo Size="24" Type="tfhd"/>
+<FullBoxInfo Version="0" Flags="0x2000A"/>
+</TrackFragmentHeaderBox>
+<TrackFragmentBaseMediaDecodeTimeBox baseMediaDecodeTime="7354944000">
+<BoxInfo Size="20" Type="tfdt"/>
+<FullBoxInfo Version="1" Flags="0x0"/>
+</TrackFragmentBaseMediaDecodeTimeBox>
+<TrackRunBox SampleCount="80" DataOffset="744">
+<BoxInfo Size="660" Type="trun"/>
+<FullBoxInfo Version="0" Flags="0x601"/>
+<TrackRunEntry Size="28908" SamplePadding="0" Sync="1" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12935" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10892" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="13535" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10613" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15875" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9830" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15767" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10528" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12627" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="8201" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15744" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="8927" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10649" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="8952" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14312" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9489" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14674" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10276" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15167" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12563" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14729" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11303" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="18498" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12548" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15716" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12578" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16018" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="13373" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15974" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10359" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="17131" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10529" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15936" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="13083" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="20068" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9947" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="17692" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9523" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12853" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11401" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="13595" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10620" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="13978" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12734" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="12821" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9720" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16550" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="9696" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14454" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10485" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15635" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11023" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16925" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11253" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16027" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10482" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16014" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10435" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15986" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11865" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="15752" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11595" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="16335" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11907" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="18489" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14529" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="18403" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11908" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="18662" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10593" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14952" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11298" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="17255" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10762" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="17383" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="11332" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14952" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="10888" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+<TrackRunEntry Size="14164" SamplePadding="0" Sync="0" DegradationPriority="0" IsLeading="0" DependsOn="0" IsDependedOn="0" HasRedundancy="0"/>
+</TrackRunBox>
+</TrackFragmentBox>
+</MovieFragmentBox>
+<MediaDataBox dataSize="1081180">
+<BoxInfo Size="1081188" Type="mdat"/>
+</MediaDataBox>
+</IsoMediaFile>
