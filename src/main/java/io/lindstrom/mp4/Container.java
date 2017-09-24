@@ -1,13 +1,12 @@
 package io.lindstrom.mp4;
 
 import io.lindstrom.mp4.box.Box;
-import io.lindstrom.mp4.box.GenericContainerBox;
 
 import java.util.List;
 import java.util.Optional;
 
 public class Container {
-    private final List<Box> boxes;
+    protected final List<Box> boxes;
 
     public Container(List<Box> boxes) {
         this.boxes = boxes;
@@ -26,8 +25,8 @@ public class Container {
         for (Box box : boxes) {
             if (clazz.isInstance(box)) {
                 return Optional.of(clazz.cast(box));
-            } else if (box instanceof GenericContainerBox) {
-                Optional<T> boxInContainer = findBox(((GenericContainerBox) box).getBoxes(), clazz);
+            } else if (box instanceof Container) {
+                Optional<T> boxInContainer = findBox(((Container) box).getBoxes(), clazz);
                 if (boxInContainer.isPresent()) {
                     return boxInContainer;
                 }

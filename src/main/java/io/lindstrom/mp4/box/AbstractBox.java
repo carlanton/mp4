@@ -22,9 +22,4 @@ public abstract class AbstractBox implements Box {
     }
 
     public abstract void write(ByteBuffer content);
-
-
-    protected int getContentSize() {
-        return Math.toIntExact(getSize() - HEADER_SIZE);
-    }
 }

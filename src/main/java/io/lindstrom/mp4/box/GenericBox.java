@@ -3,6 +3,7 @@ package io.lindstrom.mp4.box;
 import io.lindstrom.mp4.Mp4Utils;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 public class GenericBox extends AbstractBox {
     private final int type;
@@ -28,10 +29,28 @@ public class GenericBox extends AbstractBox {
         content.put(this.content);
     }
 
+    public ByteBuffer getContent() {
+        return content.asReadOnlyBuffer();
+    }
+
     @Override
     public String toString() {
         return "GenericBox{" +
                 "type=" + Mp4Utils.boxType(type) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GenericBox that = (GenericBox) o;
+        return type == that.type &&
+                Objects.equals(content, that.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, content);
     }
 }

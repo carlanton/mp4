@@ -1,9 +1,10 @@
 package io.lindstrom.mp4;
 
-import io.lindstrom.mp4.box.*;
+import io.lindstrom.mp4.box.Box;
+import io.lindstrom.mp4.box.GenericBox;
+import io.lindstrom.mp4.box.GenericContainerBox;
 import io.lindstrom.mp4.box.iso.*;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ReadableByteChannel;
@@ -13,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Mp4Parser {
+    private static final int UUID = Mp4Utils.boxType("uuid");
 
     public Mp4Parser() {
 
@@ -21,15 +23,17 @@ public class Mp4Parser {
     private Box parse(ReadableByteChannel channel, int type, int contentLength) throws IOException {
         String boxType = Mp4Utils.boxType(type);
         switch (boxType) {
+            case "moov":
+                return new MovieBox(channel, contentLength, this);
+
             case "mvex":
             case "trak":
             case "minf":
             case "mdia":
             case "stbl":
             case "moof":
-            case "moov":
             case "traf":
-                return parseGenericContainerBox(channel, type, contentLength);
+                return new GenericContainerBox(channel, type, contentLength, this);
         }
 
         ByteBuffer content = ByteBuffer.allocate(contentLength);
@@ -66,9 +70,7 @@ public class Mp4Parser {
     public Container parse(ReadableByteChannel channel) throws IOException {
         List<Box> boxes = new ArrayList<>();
         while (true) {
-            try {
-                parseBox(channel, boxes);
-            } catch (EOFException e) {
+            if (parseBox(channel, boxes) == -1) {
                 break;
             }
         }
@@ -80,7 +82,7 @@ public class Mp4Parser {
         int bytesRead = channel.read(header);
 
         if (bytesRead == -1) {
-            throw new EOFException();
+            return -1;
         } else if (bytesRead != 8) {
             throw new IOException("End of stream");
         }
@@ -94,6 +96,8 @@ public class Mp4Parser {
             throw new UnsupportedOperationException("Unsupported box: size = 1");
         } else if (size == 0) {
             throw new UnsupportedOperationException("Unsupported box: size = 0");
+        } else if (type == UUID) {
+            throw new UnsupportedOperationException("Unsupported box: type = uuid");
         }
 
         boxes.add(parse(channel, type, contentLength));
@@ -107,18 +111,4 @@ public class Mp4Parser {
         }
     }
 
-    private GenericContainerBox parseGenericContainerBox(ReadableByteChannel channel, int type, int contentLength) throws IOException {
-        List<Box> boxes = new ArrayList<>();
-
-        long r = 0;
-        while (r < contentLength) {
-            r += parseBox(channel, boxes);
-        }
-
-        if (r != contentLength) {
-            throw new RuntimeException("error: read " + r + ", expected " + contentLength);
-        }
-
-        return new GenericContainerBox(type, boxes);
-    }
 }

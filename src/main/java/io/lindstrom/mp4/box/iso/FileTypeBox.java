@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /*
 aligned(8) class FileTypeBox extends Box(‘ftyp’) {
@@ -60,6 +61,33 @@ public class FileTypeBox extends AbstractBox {
         }
     }
 
+    public String getMajorBrand() {
+        return majorBrand;
+    }
+
+    public long getMinorVersion() {
+        return minorVersion;
+    }
+
+    public List<String> getCompatibleBrands() {
+        return compatibleBrands;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FileTypeBox that = (FileTypeBox) o;
+        return minorVersion == that.minorVersion &&
+                Objects.equals(majorBrand, that.majorBrand) &&
+                Objects.equals(compatibleBrands, that.compatibleBrands);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(majorBrand, minorVersion, compatibleBrands);
+    }
+
     @Override
     public String toString() {
         return "FileTypeBox{" +
@@ -67,5 +95,37 @@ public class FileTypeBox extends AbstractBox {
                 ", minorVersion=" + minorVersion +
                 ", compatibleBrands=" + compatibleBrands +
                 '}';
+    }
+
+    public Builder buildUpon() {
+        return new Builder()
+                .withMajorBrand(majorBrand)
+                .withMinorVersion(minorVersion)
+                .withCompatibleBrands(compatibleBrands);
+    }
+
+    public static class Builder {
+        private String majorBrand;
+        private long minorVersion;
+        private List<String> compatibleBrands;
+
+        public Builder withMajorBrand(String majorBrand) {
+            this.majorBrand = majorBrand;
+            return this;
+        }
+
+        public Builder withMinorVersion(long minorVersion) {
+            this.minorVersion = minorVersion;
+            return this;
+        }
+
+        public Builder withCompatibleBrands(List<String> compatibleBrands) {
+            this.compatibleBrands = compatibleBrands;
+            return this;
+        }
+
+        public FileTypeBox build() {
+            return new FileTypeBox(majorBrand, minorVersion, compatibleBrands);
+        }
     }
 }

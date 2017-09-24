@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * aligned(8) class SegmentIndexBox extends FullBox(‘sidx’, version, 0) {
@@ -142,6 +143,49 @@ public class SegmentIndexBox extends AbstractFullBox {
             b.writeBits(entry.getSapType(), 3);
             b.writeBits(entry.getSapDeltaTime(), 28);
         }
+    }
+
+    public long getReferenceId() {
+        return referenceId;
+    }
+
+    public long getTimescale() {
+        return timescale;
+    }
+
+    public long getEarliestPresentationTime() {
+        return earliestPresentationTime;
+    }
+
+    public long getFirstOffset() {
+        return firstOffset;
+    }
+
+    public int getReserved() {
+        return reserved;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        SegmentIndexBox that = (SegmentIndexBox) o;
+        return referenceId == that.referenceId &&
+                timescale == that.timescale &&
+                earliestPresentationTime == that.earliestPresentationTime &&
+                firstOffset == that.firstOffset &&
+                reserved == that.reserved &&
+                Objects.equals(entries, that.entries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), referenceId, timescale, earliestPresentationTime, firstOffset, reserved, entries);
     }
 
     @Override

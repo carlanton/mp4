@@ -4,6 +4,7 @@ import io.lindstrom.mp4.Mp4Utils;
 import io.lindstrom.mp4.box.AbstractFullBox;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 public class TrackFragmentBaseMediaDecodeTimeBox extends AbstractFullBox {
     private static final int TYPE = Mp4Utils.boxType("tfdt");
@@ -43,6 +44,10 @@ public class TrackFragmentBaseMediaDecodeTimeBox extends AbstractFullBox {
         return TYPE;
     }
 
+    public long getBaseMediaDecodeTime() {
+        return baseMediaDecodeTime;
+    }
+
     @Override
     public String toString() {
         return "TrackFragmentBaseMediaDecodeTimeBox{" +
@@ -50,5 +55,19 @@ public class TrackFragmentBaseMediaDecodeTimeBox extends AbstractFullBox {
                 ", flags=" + flags +
                 ", baseMediaDecodeTime=" + baseMediaDecodeTime +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TrackFragmentBaseMediaDecodeTimeBox that = (TrackFragmentBaseMediaDecodeTimeBox) o;
+        return baseMediaDecodeTime == that.baseMediaDecodeTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), baseMediaDecodeTime);
     }
 }

@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class TrackRunBox extends AbstractFullBox {
     public static final int TYPE = Mp4Utils.boxType("trun");
@@ -35,7 +36,7 @@ public class TrackRunBox extends AbstractFullBox {
         }
 
         if ((flags & 0x4) == 0x4) { //firstSampleFlagsPresent
-            firstSampleFlags = new SampleFlags(content);
+            firstSampleFlags = new SampleFlags(Mp4Utils.readUInt32(content));
         } else {
             firstSampleFlags = null;
         }
@@ -55,7 +56,7 @@ public class TrackRunBox extends AbstractFullBox {
                 sampleSize = Mp4Utils.readUInt32(content);
             }
             if ((flags & 0x400) == 0x400) { //sampleFlagsPresent
-                sampleFlags = new SampleFlags(content);
+                sampleFlags = new SampleFlags(Mp4Utils.readUInt32(content));
             }
             if ((flags & 0x800) == 0x800) { //sampleCompositionTimeOffsetPresent
                 sampleCompositionTimeOffset = content.getInt();
@@ -110,7 +111,7 @@ public class TrackRunBox extends AbstractFullBox {
         }
 
         if ((flags & 0x4) == 0x4) { //firstSampleFlagsPresent
-            firstSampleFlags.getContent(byteBuffer);
+            Mp4Utils.writeUInt32(byteBuffer, firstSampleFlags.asUInt32());
         }
 
         for (Entry entry : entries) {
@@ -121,7 +122,7 @@ public class TrackRunBox extends AbstractFullBox {
                 Mp4Utils.writeUInt32(byteBuffer, entry.sampleSize);
             }
             if ((flags & 0x400) == 0x400) { //sampleFlagsPresent
-                entry.sampleFlags.getContent(byteBuffer);
+                Mp4Utils.writeUInt32(byteBuffer, entry.sampleFlags.asUInt32());
             }
             if ((flags & 0x800) == 0x800) { //sampleCompositionTimeOffsetPresent
                 if (version == 0) {
@@ -133,6 +134,18 @@ public class TrackRunBox extends AbstractFullBox {
         }
     }
 
+    public int getDataOffset() {
+        return dataOffset;
+    }
+
+    public SampleFlags getFirstSampleFlags() {
+        return firstSampleFlags;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
     @Override
     public String toString() {
         return "TrackRunBox{" +
@@ -142,6 +155,22 @@ public class TrackRunBox extends AbstractFullBox {
                 ", firstSampleFlags=" + firstSampleFlags +
                 ", entries=" + entries +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TrackRunBox that = (TrackRunBox) o;
+        return dataOffset == that.dataOffset &&
+                Objects.equals(firstSampleFlags, that.firstSampleFlags) &&
+                Objects.equals(entries, that.entries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), dataOffset, firstSampleFlags, entries);
     }
 
     public static class Entry {
@@ -165,6 +194,22 @@ public class TrackRunBox extends AbstractFullBox {
                     ", sampleFlags=" + sampleFlags +
                     ", sampleCompositionTimeOffset=" + sampleCompositionTimeOffset +
                     '}';
+        }
+
+        public long getSampleDuration() {
+            return sampleDuration;
+        }
+
+        public long getSampleSize() {
+            return sampleSize;
+        }
+
+        public SampleFlags getSampleFlags() {
+            return sampleFlags;
+        }
+
+        public long getSampleCompositionTimeOffset() {
+            return sampleCompositionTimeOffset;
         }
     }
 }

@@ -1,8 +1,6 @@
 package io.lindstrom.mp4;
 
 import io.lindstrom.mp4.box.Box;
-import io.lindstrom.mp4.box.GenericContainerBox;
-import io.lindstrom.mp4.box.iso.FileTypeBox;
 import org.junit.Test;
 
 import java.nio.channels.ReadableByteChannel;
@@ -30,10 +28,8 @@ public class Mp4ParserTest {
             container = mp4Parser.parse(channel);
         }
 
-       // prettyPrint(container.getBoxes(), 0);
+        prettyPrint(container.getBoxes(), 0);
 
-        Box b = container.findBox(FileTypeBox.class).get();
-        System.out.println(b);
         try (WritableByteChannel channel = Files.newByteChannel(output,
                 StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
             mp4Parser.writeBoxes(container.getBoxes(), channel);
@@ -46,8 +42,8 @@ public class Mp4ParserTest {
         String prefix = level > 0 ? String.format("%" + level + "s", "") : "";
         for (Box box : boxes) {
             System.out.println(prefix + box.toString());
-            if (box instanceof GenericContainerBox) {
-                prettyPrint(((GenericContainerBox) box).getBoxes(), level + 2);
+            if (box instanceof Container) {
+                prettyPrint(((Container) box).getBoxes(), level + 2);
             }
         }
     }

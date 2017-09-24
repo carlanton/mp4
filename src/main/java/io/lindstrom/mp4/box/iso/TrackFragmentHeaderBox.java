@@ -7,6 +7,7 @@ import io.lindstrom.mp4.box.AbstractFullBox;
 import io.lindstrom.mp4.box.SampleFlags;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 public class TrackFragmentHeaderBox extends AbstractFullBox {
     public static final int TYPE = Mp4Utils.boxType("tfhd");
@@ -36,7 +37,7 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
             defaultSampleSize = IsoTypeReader.readUInt32(content);
         }
         if ((flags & 0x20) == 0x20) { //defaultSampleFlagsPresent
-            defaultSampleFlags = new SampleFlags(content);
+            defaultSampleFlags = new SampleFlags(Mp4Utils.readUInt32(content));
         }
         if ((flags & 0x10000) == 0x10000) { //durationIsEmpty
             durationIsEmpty = true;
@@ -63,7 +64,7 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
             IsoTypeWriter.writeUInt32(byteBuffer, defaultSampleSize);
         }
         if ((flags & 0x20) == 0x20) { //defaultSampleFlagsPresent
-            defaultSampleFlags.getContent(byteBuffer);
+            IsoTypeWriter.writeUInt32(byteBuffer, defaultSampleFlags.asUInt32());
         }
     }
 
@@ -94,6 +95,38 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
         return size;
     }
 
+    public long getTrackId() {
+        return trackId;
+    }
+
+    public long getBaseDataOffset() {
+        return baseDataOffset;
+    }
+
+    public long getSampleDescriptionIndex() {
+        return sampleDescriptionIndex;
+    }
+
+    public long getDefaultSampleDuration() {
+        return defaultSampleDuration;
+    }
+
+    public long getDefaultSampleSize() {
+        return defaultSampleSize;
+    }
+
+    public SampleFlags getDefaultSampleFlags() {
+        return defaultSampleFlags;
+    }
+
+    public boolean isDurationIsEmpty() {
+        return durationIsEmpty;
+    }
+
+    public boolean isDefaultBaseIsMoof() {
+        return defaultBaseIsMoof;
+    }
+
     @Override
     public String toString() {
         return "TrackFragmentHeaderBox{" +
@@ -108,5 +141,26 @@ public class TrackFragmentHeaderBox extends AbstractFullBox {
                 ", version=" + version +
                 ", flags=" + flags +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        TrackFragmentHeaderBox that = (TrackFragmentHeaderBox) o;
+        return trackId == that.trackId &&
+                baseDataOffset == that.baseDataOffset &&
+                sampleDescriptionIndex == that.sampleDescriptionIndex &&
+                defaultSampleDuration == that.defaultSampleDuration &&
+                defaultSampleSize == that.defaultSampleSize &&
+                durationIsEmpty == that.durationIsEmpty &&
+                defaultBaseIsMoof == that.defaultBaseIsMoof &&
+                Objects.equals(defaultSampleFlags, that.defaultSampleFlags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), trackId, baseDataOffset, sampleDescriptionIndex, defaultSampleDuration, defaultSampleSize, defaultSampleFlags, durationIsEmpty, defaultBaseIsMoof);
     }
 }

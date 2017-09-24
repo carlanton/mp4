@@ -1,8 +1,6 @@
 package io.lindstrom.mp4.box;
 
-import io.lindstrom.mp4.Mp4Utils;
-
-import java.nio.ByteBuffer;
+import java.util.Objects;
 
 public class SampleFlags {
     private final byte reserved;
@@ -14,8 +12,7 @@ public class SampleFlags {
     private final boolean sampleIsDifferenceSample;
     private final int sampleDegradationPriority;
 
-    public SampleFlags(ByteBuffer byteBuffer) {
-        long value = Mp4Utils.readUInt32(byteBuffer);
+    public SampleFlags(long value) {
         reserved = (byte) ((value & 0xF0000000) >> 28);
         isLeading = (byte) ((value & 0x0C000000) >> 26);
         sampleDependsOn = (byte) ((value & 0x03000000) >> 24);
@@ -26,7 +23,7 @@ public class SampleFlags {
         sampleDegradationPriority = (int) (value & 0x0000ffff);
     }
 
-    public void getContent(ByteBuffer byteBuffer) {
+    public long asUInt32() {
         long value = 0;
         value |= reserved << 28;
         value |= isLeading << 26;
@@ -36,6 +33,72 @@ public class SampleFlags {
         value |= samplePaddingValue << 17;
         value |= (sampleIsDifferenceSample ? 1 : 0) << 16;
         value |= sampleDegradationPriority;
-        Mp4Utils.writeUInt32(byteBuffer, value);
+        return value;
+    }
+
+    public byte getReserved() {
+        return reserved;
+    }
+
+    public byte getIsLeading() {
+        return isLeading;
+    }
+
+    public byte getSampleDependsOn() {
+        return sampleDependsOn;
+    }
+
+    public byte getSampleIsDependedOn() {
+        return sampleIsDependedOn;
+    }
+
+    public byte getSampleHasRedundancy() {
+        return sampleHasRedundancy;
+    }
+
+    public byte getSamplePaddingValue() {
+        return samplePaddingValue;
+    }
+
+    public boolean isSampleIsDifferenceSample() {
+        return sampleIsDifferenceSample;
+    }
+
+    public int getSampleDegradationPriority() {
+        return sampleDegradationPriority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SampleFlags that = (SampleFlags) o;
+        return reserved == that.reserved &&
+                isLeading == that.isLeading &&
+                sampleDependsOn == that.sampleDependsOn &&
+                sampleIsDependedOn == that.sampleIsDependedOn &&
+                sampleHasRedundancy == that.sampleHasRedundancy &&
+                samplePaddingValue == that.samplePaddingValue &&
+                sampleIsDifferenceSample == that.sampleIsDifferenceSample &&
+                sampleDegradationPriority == that.sampleDegradationPriority;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reserved, isLeading, sampleDependsOn, sampleIsDependedOn, sampleHasRedundancy, samplePaddingValue, sampleIsDifferenceSample, sampleDegradationPriority);
+    }
+
+    @Override
+    public String toString() {
+        return "SampleFlags{" +
+                "reserved=" + reserved +
+                ", isLeading=" + isLeading +
+                ", sampleDependsOn=" + sampleDependsOn +
+                ", sampleIsDependedOn=" + sampleIsDependedOn +
+                ", sampleHasRedundancy=" + sampleHasRedundancy +
+                ", samplePaddingValue=" + samplePaddingValue +
+                ", sampleIsDifferenceSample=" + sampleIsDifferenceSample +
+                ", sampleDegradationPriority=" + sampleDegradationPriority +
+                '}';
     }
 }
