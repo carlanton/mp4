@@ -1,30 +1,65 @@
 package io.lindstrom.mp4;
 
-import io.lindstrom.mp4.box.Box;
-import io.lindstrom.mp4.box.GenericBox;
-import io.lindstrom.mp4.box.GenericContainerBox;
-import io.lindstrom.mp4.box.iso.*;
+import io.lindstrom.mp4.boxes.GenericBox;
+import io.lindstrom.mp4.boxes.GenericContainerBox;
+import io.lindstrom.mp4.boxes.iso14496.part12.*;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.FileChannel;
 import java.nio.channels.WritableByteChannel;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Mp4Parser {
+public class Mp4Parser implements BoxParser {
     private static final int UUID = Mp4Utils.boxType("uuid");
+    private static final int MMAP_SIZE = 50 * 1024;
 
-    public Mp4Parser() {
-
+    @Override
+    public void write(Container container, WritableByteChannel channel) throws IOException {
+        for (Box box : container.getBoxes()) {
+            box.write(channel);
+        }
     }
 
-    private Box parse(ReadableByteChannel channel, int type, int contentLength) throws IOException {
+    public Container parse(Path path) throws IOException {
+        List<Box> boxes = new ArrayList<>();
+        ByteBuffer byteBuffer;
+
+        try (FileChannel channel = FileChannel.open(path)) {
+            long size = channel.size();
+
+            if (size > MMAP_SIZE) {
+                byteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, size);
+            } else {
+                byteBuffer = ByteBuffer.allocate((int) size);
+                while (byteBuffer.remaining() > 0) {
+                    channel.read(byteBuffer);
+                }
+                byteBuffer.flip();
+            }
+        }
+
+        while (true) {
+            if (parseBox(byteBuffer, boxes) == -1) {
+                break;
+            }
+        }
+
+        return new BasicContainer(Collections.unmodifiableList(boxes));
+    }
+
+    private Box parse(ByteBuffer data, int type, int contentLength) {
+        ByteBuffer content = data.slice();
+        content.limit(contentLength);
+        data.position(data.position() + contentLength);
         String boxType = Mp4Utils.boxType(type);
+
         switch (boxType) {
             case "moov":
-                return new MovieBox(channel, contentLength, this);
+                return new MovieBox(content, this);
 
             case "mvex":
             case "trak":
@@ -33,63 +68,44 @@ public class Mp4Parser {
             case "stbl":
             case "moof":
             case "traf":
-                return new GenericContainerBox(channel, type, contentLength, this);
-        }
+                return new GenericContainerBox(content, type, this);
 
-        ByteBuffer content = ByteBuffer.allocate(contentLength);
-        channel.read(content);
-        content.flip();
+            case "stsd":
+                return new SampleDescriptionBox(content, this);
 
-        switch (boxType) {
+            case "mdhd":
+                return new MediaHeaderBox(content);
+            case "trex":
+                return new TrackExtendsBox(content);
+            case "hdlr":
+                return new HandlerBox(content);
             case "ftyp":
                 return new FileTypeBox(content);
-
             case "styp":
                 return new SegmentTypeBox(content);
-
             case "sidx":
                 return new SegmentIndexBox(content);
-
             case "tfdt":
                 return new TrackFragmentBaseMediaDecodeTimeBox(content);
-
             case "mfhd":
                 return new MovieFragmentHeaderBox(content);
-
             case "trun":
                 return new TrackRunBox(content);
-
             case "tfhd":
                 return new TrackFragmentHeaderBox(content);
-
             default:
                 return new GenericBox(type, content);
         }
     }
 
-    public Container parse(ReadableByteChannel channel) throws IOException {
-        List<Box> boxes = new ArrayList<>();
-        while (true) {
-            if (parseBox(channel, boxes) == -1) {
-                break;
-            }
-        }
-        return new Container(Collections.unmodifiableList(boxes));
-    }
-
-    public long parseBox(ReadableByteChannel channel, List<Box> boxes) throws IOException {
-        ByteBuffer header = ByteBuffer.allocate(8);
-        int bytesRead = channel.read(header);
-
-        if (bytesRead == -1) {
+    public long parseBox(ByteBuffer data, List<Box> boxes) {
+        if (data.remaining() < 8)
             return -1;
-        } else if (bytesRead != 8) {
-            throw new IOException("End of stream");
-        }
 
-        header.flip();
-        long size = Integer.toUnsignedLong(header.getInt());
-        int type = header.getInt();
+        long size = Integer.toUnsignedLong(data.getInt());
+        int type = data.getInt();
+
+
         int contentLength = Math.toIntExact(size - 8);
 
         if (size == 1) {
@@ -100,15 +116,10 @@ public class Mp4Parser {
             throw new UnsupportedOperationException("Unsupported box: type = uuid");
         }
 
-        boxes.add(parse(channel, type, contentLength));
+        Box box = parse(data, type, contentLength);
+        boxes.add(box);
 
         return size;
-    }
-
-    public void writeBoxes(List<Box> boxes, WritableByteChannel channel) throws IOException {
-        for (Box box : boxes) {
-            box.write(channel);
-        }
     }
 
 }

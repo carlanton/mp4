@@ -1,9 +1,7 @@
 package io.lindstrom.mp4;
 
-import io.lindstrom.mp4.box.Box;
 import org.junit.Test;
 
-import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,23 +14,19 @@ import static org.junit.Assert.assertArrayEquals;
 public class Mp4ParserTest {
     @Test
     public void parse() throws Exception {
-        Path input = Paths.get("src/test/resources/v1-init.mp4");
-        //Path input = Paths.get("src/test/resources/v6-25539.mp4");
+        //Path input = Paths.get("src/test/resources/v1-init.mp4");
+        Path input = Paths.get("src/test/resources/s0-init.mp4");
         Path output = Paths.get("out.mp4");
 
         Mp4Parser mp4Parser = new Mp4Parser();
 
-        Container container;
-
-        try (ReadableByteChannel channel = Files.newByteChannel(input)) {
-            container = mp4Parser.parse(channel);
-        }
+        Container container = mp4Parser.parse(input);
 
         prettyPrint(container.getBoxes(), 0);
 
         try (WritableByteChannel channel = Files.newByteChannel(output,
                 StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
-            mp4Parser.writeBoxes(container.getBoxes(), channel);
+            mp4Parser.write(container, channel);
         }
 
         assertArrayEquals(Files.readAllBytes(input), Files.readAllBytes(output));
